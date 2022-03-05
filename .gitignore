@@ -193,6 +193,12 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+# Custom
+.vscode
+data
+
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 
