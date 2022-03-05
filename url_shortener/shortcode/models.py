@@ -6,7 +6,10 @@ class URL(models.Model):
     expiration_default_date = datetime.date.today() + datetime.timedelta(days=10)
 
     class Meta:
-        indexes = [models.Index(fields=["shortcode"])]
+        indexes = [
+            models.Index(fields=["shortcode"]),
+            models.Index(fields=["fullname"]),
+        ]
 
     description = models.CharField(max_length=256, null=False)
     shortcode = models.CharField(max_length=64, null=False)
