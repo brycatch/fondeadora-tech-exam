@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# TODO: Update insecure key in .env variable
 SECRET_KEY = "django-insecure-krssyhc5d1lgerw^@)-2&q)nw#h__s()_o^((ak3pm)wd!4iv2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -123,3 +124,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {"DATE_INPUT_FORMATS": ["%m/%d/%Y"]}
