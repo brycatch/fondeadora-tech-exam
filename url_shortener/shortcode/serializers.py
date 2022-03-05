@@ -2,26 +2,20 @@ import re, string, random
 from datetime import datetime, timedelta
 
 from rest_framework import serializers
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+
 from shortcode.constants import URL_REGEX, QUERY_PARAMS_REGEX
-from shortcode.models import URL
+from shortcode.models import URL, Tracking
 
 
 class CreateURLSerializer(serializers.Serializer):
     description = serializers.CharField(
-        required=True,
-        allow_blank=False,
-        max_length=256,
+        required=True, allow_blank=False, max_length=256
     )
-    url = serializers.CharField(
-        required=True,
-        allow_blank=False,
-        max_length=2048,
-    )
+    url = serializers.CharField(required=True, allow_blank=False, max_length=2048)
     shortcode = serializers.CharField(
-        required=False,
-        allow_null=False,
-        allow_blank=True,
-        max_length=64,
+        required=False, allow_null=False, allow_blank=True, max_length=64
     )
     expiration = serializers.DateField(required=False)
 
@@ -135,3 +129,21 @@ class CreateURLSerializer(serializers.Serializer):
 
     def __get_random_string(self, length):
         return "".join(random.choices(string.ascii_uppercase + string.digits, k=length))
+
+
+class RecoverURLSerializer(serializers.Serializer):
+    shortcode = serializers.CharField(
+        required=True, allow_blank=False, min_length=6, max_length=256
+    )
+
+    def get_url(self):
+        shortcode = self.validated_data.get("shortcode")
+        url = get_object_or_404(URL, shortcode=shortcode)
+        is_expired = url.expiration < datetime.today().date()
+        if is_expired:
+            raise Http404
+        return url
+
+    def create_tracking(self, url):
+        tracking = Tracking(url=url)
+        tracking.save()

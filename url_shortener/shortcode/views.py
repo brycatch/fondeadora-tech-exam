@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from shortcode.serializers import CreateURLSerializer
+from shortcode.serializers import CreateURLSerializer, RecoverURLSerializer
 
 
 class Create(APIView):
@@ -20,4 +20,8 @@ class Create(APIView):
 
 class Recover(APIView):
     def get(self, request, shortcode):
-        return Response(data={"test": shortcode}, status=status.HTTP_200_OK)
+        serializer = RecoverURLSerializer(data={"shortcode": shortcode})
+        serializer.is_valid(raise_exception=True)
+        url = serializer.get_url()
+        serializer.create_tracking(url)
+        return Response(data={"url": url.fullname}, status=status.HTTP_200_OK)
