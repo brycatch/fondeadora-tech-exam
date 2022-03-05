@@ -29,13 +29,8 @@ class CreateURLSerializer(serializers.Serializer):
 
     def validate_shortcode(self, shortcode):
         try:
-            duplicated_url = URL.objects.get(shortcode=shortcode)
-            is_expired = duplicated_url.expiration < datetime.today().date()
-            if is_expired:
-                raise serializers.ValidationError(
-                    f"Shortcode: {shortcode} is already used"
-                )
-            return shortcode
+            URL.objects.get(shortcode=shortcode)
+            raise serializers.ValidationError(f"Shortcode: {shortcode} is already used")
         except URL.DoesNotExist:
             return shortcode
 
