@@ -6,3 +6,7 @@ up:
 
 down:
 		docker-compose down
+
+
+test:
+		python3 manage.py test --pattern="tests*.py"

@@ -15,7 +15,7 @@ class CreateURLSerializer(serializers.Serializer):
     )
     url = serializers.CharField(required=True, allow_blank=False, max_length=2048)
     shortcode = serializers.CharField(
-        required=False, allow_null=False, allow_blank=True, max_length=64
+        required=False, allow_null=False, allow_blank=True, min_length=6, max_length=64
     )
     expiration = serializers.DateField(required=False)
 
@@ -61,15 +61,15 @@ class CreateURLSerializer(serializers.Serializer):
 
         return url_to_insert, is_new
 
-    def create(self, get_url_to_insert, is_new):
+    def create(self, url_to_insert, is_new):
         """
         TODO: Make documentation like this
         Create and return a new `URL` instance, given the validated data.
         """
         if is_new:
-            url = URL.objects.create(**get_url_to_insert)
-            get_url_to_insert["id"] = url.pk
-        return get_url_to_insert
+            url = URL.objects.create(**url_to_insert)
+            url_to_insert["id"] = url.pk
+        return url_to_insert
 
     def __get_name_and_query_params(self, fullname):
         url_splitted = fullname.split("?")
