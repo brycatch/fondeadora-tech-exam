@@ -3,6 +3,15 @@ import datetime
 
 
 class URL(models.Model):
+    """URL Model
+    description: Description for an URL.
+    shortcode: ID referenced with an URL
+    fullname: Complete URL link with queryparams (if apply)
+    name: Host of an URL without params
+    query_params: queryparams for an URL if it has.
+    expiration: date to know if an URL is valid or not (default is 10 days after is inserted)
+    """
+
     expiration_default_date = datetime.date.today() + datetime.timedelta(days=10)
 
     class Meta:

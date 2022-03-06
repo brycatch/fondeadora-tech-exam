@@ -10,6 +10,10 @@ from shortcode.models import URL, Tracking
 
 
 class CreateURLSerializer(serializers.Serializer):
+    """
+    /create Serializer
+    """
+
     description = serializers.CharField(
         required=True, allow_blank=False, max_length=256
     )
@@ -20,6 +24,9 @@ class CreateURLSerializer(serializers.Serializer):
     expiration = serializers.DateField(required=False)
 
     def validate_url(self, url):
+        """
+        Verify if a string starts with https://
+        """
         url_is_invalid = re.search(URL_REGEX, url) is None
         if url_is_invalid:
             raise serializers.ValidationError(
@@ -28,6 +35,9 @@ class CreateURLSerializer(serializers.Serializer):
         return url
 
     def validate_shortcode(self, shortcode):
+        """
+        Verify if a shortcode is already used
+        """
         try:
             URL.objects.get(shortcode=shortcode)
             raise serializers.ValidationError(f"Shortcode: {shortcode} is already used")
@@ -35,6 +45,9 @@ class CreateURLSerializer(serializers.Serializer):
             return shortcode
 
     def validate_expiration(self, expiration):
+        """
+        Make a validation with a date received. It's true if a value is 10 days more than now
+        """
         today_plus_10_days = (datetime.today() + timedelta(days=10)).date()
         expiration_is_invalid = expiration < today_plus_10_days
         if expiration_is_invalid:
@@ -44,6 +57,9 @@ class CreateURLSerializer(serializers.Serializer):
         return expiration
 
     def get_url_to_insert(self):
+        """
+        Get an URL object to be saved
+        """
         description = self.validated_data.get("description")
         name, query_params, fullname = self.__get_name_and_query_params(
             self.validated_data.get("url")
@@ -63,7 +79,6 @@ class CreateURLSerializer(serializers.Serializer):
 
     def create(self, url_to_insert, is_new):
         """
-        TODO: Make documentation like this
         Create and return a new `URL` instance, given the validated data.
         """
         if is_new:
@@ -72,6 +87,11 @@ class CreateURLSerializer(serializers.Serializer):
         return url_to_insert
 
     def __get_name_and_query_params(self, fullname):
+        """
+        Given a complete URL (fullname), returns:
+            name: URL only with host
+            query_params: string with all queryparams ordered by ASC
+        """
         url_splitted = fullname.split("?")
         if len(url_splitted) > 1:
             name = url_splitted[0]
@@ -84,6 +104,9 @@ class CreateURLSerializer(serializers.Serializer):
         return name, query_params, fullname
 
     def __get_sorted_params(self, params):
+        """
+        Given a string with params, returns a string with ordered params
+        """
         result = ""
         params_sorted = []
         params_splitted = params.split("&")
@@ -104,6 +127,11 @@ class CreateURLSerializer(serializers.Serializer):
         return result
 
     def __get_shortcode(self, fullname):
+        """
+        Returns a shortcode by two conditions:
+        - If the URL was already inserted, returns its shortcode
+        - Else return a shortcode if this is custom or a random 6 length string
+        """
         shortcode_generated = self.validated_data.get(
             "shortcode",
             self.__get_random_string(6),
@@ -118,20 +146,33 @@ class CreateURLSerializer(serializers.Serializer):
             return shortcode_generated, is_new
 
     def __get_expiration(self):
+        """
+        returns a date 10 days more than know
+        """
         today_plus_10_days = (datetime.today() + timedelta(days=10)).date()
         date = self.validated_data.get("expiration", today_plus_10_days)
         return date
 
     def __get_random_string(self, length):
+        """
+        returns a random N length string
+        """
         return "".join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
 
 class RecoverURLSerializer(serializers.Serializer):
+    """
+    /:shortcode serializer
+    """
+
     shortcode = serializers.CharField(
         required=True, allow_blank=False, min_length=6, max_length=256
     )
 
     def get_url(self):
+        """
+        Return an URL instance if its found by a shortcode, else returns 404
+        """
         shortcode = self.validated_data.get("shortcode")
         url = get_object_or_404(URL, shortcode=shortcode)
         is_expired = url.expiration < datetime.today().date()
@@ -140,5 +181,8 @@ class RecoverURLSerializer(serializers.Serializer):
         return url
 
     def create_tracking(self, url):
+        """
+        Save a row of requested url
+        """
         tracking = Tracking(url=url)
         tracking.save()

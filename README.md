@@ -73,3 +73,22 @@ This database is pretty simple:
   - Throw an error
 - Save url requested
 - Return url
+
+## Running
+
+### Minimal requirements
+
+- Docker
+- docker-compose
+- `make` to running commands easier
+
+We have three commands in `makefile` in order to access easily to this project
+
+- `build` (`docker-compose build`): build Docker image.
+- `up`: (`docker-compose up -d`): initialize Docker image in background
+- `down`: (`docker-compose down`): delete Docker container.
+- `test`: (`cd url_shortener && python3 manage.py test --pattern="tests*.py"`): run all unit test (You need to create a virtualenv and install requirements to run this)
+
+## Documentation
+
+`fondeadora.postman_collection.json` had examples about how to use this project.

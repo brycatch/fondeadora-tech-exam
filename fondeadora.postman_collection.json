@@ -1,0 +1,676 @@
+{
+	"info": {
+		"_postman_id": "803918d6-258a-4b1d-862c-ac82f64c8921",
+		"name": "Fondeadora test exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/:shortcode",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/:shortcode",
+					"protocol": "http",
+					"host": [
+						"ec2-3-139-120-104",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						":shortcode"
+					],
+					"variable": [
+						{
+							"key": "shortcode",
+							"value": "7BUWNT",
+							"description": "Shortcode of an URL"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/:shortcode",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								":shortcode"
+							],
+							"variable": [
+								{
+									"key": "shortcode",
+									"value": "7BUWNT",
+									"description": "Shortcode of an URL"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:39:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"url\": \"https://test.com?aaa=11212&abc2=123asd\"\n}"
+				},
+				{
+					"name": "404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/:shortcode",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								":shortcode"
+							],
+							"variable": [
+								{
+									"key": "shortcode",
+									"value": "7BUWNTT",
+									"description": "Shortcode of an URL"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:42:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, HEAD, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"detail\": \"Not found.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com.co\",\n    \"shortcode\":\"custom-test\",\n    \"expiration\": \"03/25/2022\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+					"protocol": "http",
+					"host": [
+						"ec2-3-139-120-104",
+						"us-east-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 - basic with queryparams",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com?abc2=123asd&aaa=11212\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-144-240-19.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-144-240-19",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "200 - basic without queryparams",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:43:41 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"url\": {\n        \"description\": \"description\",\n        \"shortcode\": \"98CBS7\",\n        \"fullname\": \"https://test.com\",\n        \"name\": \"https://test.com\",\n        \"query_params\": null,\n        \"expiration\": \"2022-03-16\",\n        \"id\": 2\n    },\n    \"is_new\": true\n}"
+				},
+				{
+					"name": "200 - custom shortcode",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com.mx\",\n    \"shortcode\":\"custom-shortcode\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:45:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "197"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"url\": {\n        \"description\": \"description\",\n        \"shortcode\": \"custom-shortcode\",\n        \"fullname\": \"https://test.com.mx\",\n        \"name\": \"https://test.com.mx\",\n        \"query_params\": null,\n        \"expiration\": \"2022-03-16\",\n        \"id\": 3\n    },\n    \"is_new\": true\n}"
+				},
+				{
+					"name": "200 - expiration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com.co\",\n    \"shortcode\":\"custom-test\",\n    \"expiration\": \"03/25/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:46:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "192"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"url\": {\n        \"description\": \"description\",\n        \"shortcode\": \"custom-test\",\n        \"fullname\": \"https://test.com.co\",\n        \"name\": \"https://test.com.co\",\n        \"query_params\": null,\n        \"expiration\": \"2022-03-25\",\n        \"id\": 4\n    },\n    \"is_new\": true\n}"
+				},
+				{
+					"name": "400 - shortcode already used",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com.co\",\n    \"shortcode\":\"custom-test\",\n    \"expiration\": \"03/25/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:46:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"shortcode\": [\n        \"Shortcode: custom-test is already used\"\n    ]\n}"
+				},
+				{
+					"name": "400 - invalid date",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"description\",\n    \"url\": \"https://test.com.co\",\n    \"expiration\": \"03/03/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://ec2-3-139-120-104.us-east-2.compute.amazonaws.com/create",
+							"protocol": "http",
+							"host": [
+								"ec2-3-139-120-104",
+								"us-east-2",
+								"compute",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0 (Ubuntu)"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 18:47:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"expiration\": [\n        \"Expiration: 2022-03-03 is not a valid date\"\n    ]\n}"
+				}
+			]
+		}
+	]
+}
