@@ -7,6 +7,5 @@ up:
 down:
 		docker-compose down
 
-
 test:
-		python3 manage.py test --pattern="tests*.py"
+		cd url_shortener && python3 manage.py test --pattern="tests*.py"
